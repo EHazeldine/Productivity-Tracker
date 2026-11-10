@@ -1,0 +1,61 @@
+
+                    elif enterHabitButton.rect.collidepoint(event.pos):
+                        habitsList = cursor.fetchall()
+                        conn.close()
+                        existingHabits = len(habitsList) > 0
+                        habitNameInput.userText = ""
+                        timeDailyInput.userText = ""
+                        addingHabit = False
+                        return "refreshHome"
+                    elif not popupRect.collidepoint(event.pos):
+                        timeDailyInput.deactivate()
+                        habitNameInput.deactivate()
+                        addingHabit = False
+                    
+                    else:
+                        timeDailyInput.deactivate()
+                        habitNameInput.deactivate()
+                            
+                if editingHabit:
+                        #if anywhere else is clicked then deactivate input box    
+                        if editedNameInput.rect.collidepoint(event.pos):
+                            editedNameInput.activate()
+                            editedTimeInput.deactivate()
+                        elif editedTimeInput.rect.collidepoint(event.pos):
+                            editedTimeInput.activate()
+                            editedNameInput.deactivate()
+                            
+                        elif editedHabitButton.rect.collidepoint(event.pos):
+                            editUser, editFailed = editHabit(selectedHabitID, editedTimeInput.userText, editedNameInput.userText, usernameEntered)
+                            editedNameInput.userText = ""
+                            editedTimeInput.userText = ""
+                            editingHabit = False
+                            return "refreshHome", editUser, editFailed
+                        elif not popupRect.collidepoint(event.pos):
+                            editedTimeInput.deactivate()
+                            editedNameInput.deactivate()
+                            editingHabit = False
+                        
+                        else:
+                            editedTimeInput.deactivate()
+                            editedNameInput.deactivate()
+                        
+                    #if typing display the text
+    
+                            
+                elif showpopupLog:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        if loggedTimeInput.rect.collidepoint(event.pos):
+                            loggedTimeInput.activate()
+                         
+                        elif loggedTimeButton.rect.collidepoint(event.pos):
+                            logUser, logFail = logHabit(selectedHabitID, loggedTimeInput.userText, usernameEntered)
+                            loggedTimeInput.userText = ""
+                            showpopupLog = False
+                            return "refreshHome", logUser, logFail
+                        elif not popupRect.collidepoint(event.pos):
+                            loggedTimeInput.deactivate()
+                            showpopupLog = False
+                            
+                        else:
+                            loggedTimeInput.deactivate()
