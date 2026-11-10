@@ -1,0 +1,1 @@
+This Project Allows users to track their own consistency for habits and tasks. This can be a form of motivation that gives more tangible results. It allows users to add a new habit that they spend a set amount of time on daily. It then tracks their consistency. It adds aspects of gamification via digital currency rewards and a leaderboard
